@@ -22,8 +22,8 @@ springdoc:
     default-model-expand-depth: 10
     default-models-expand-depth: 10
     display-request-duration: true # try it out ? ??? request duration(?? ????)? ??? ???
-    cache:
-      disabled: true
+  cache:
+    disabled: true
 
 file:
   directory: D:\download\greengram_ver2\

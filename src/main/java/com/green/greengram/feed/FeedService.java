@@ -2,6 +2,7 @@ package com.green.greengram.feed;
 
 import com.green.greengram.common.model.CustomFileUtils;
 import com.green.greengram.feed.model.*;
+import com.green.greengram.feedcomment.model.FeedCommentGetRes;
 import com.green.greengram.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,12 +48,22 @@ public class FeedService {
     public List<FeedGetRes> getFeed(FeedGetReq p) {
         List<FeedGetRes> list = mapper.getFeed(p); // 리스트에 pic 값은 비어있다
         log.info("list: {}", list );
+        //피드 하나당 포함된
+        //사진 리스트
         for (FeedGetRes res: list) { // 1개의 리스트랑 list.size() (n) 만큼 돈다
             List<String> pics = mapper.getFeedPicsByFeedId(res.getFeedId()); //feedId 당 pic 갯수를 리스트저장
             res.setPics(pics); // 가져온 pic list 를 비어있는 pic 리스트에 넣음
-
+        // 댓글리스트
+            List<FeedCommentGetRes> comments = mapper.getFeedCommentTopBy4ByFeedId(res.getFeedId());
+            if (comments.size() == 4) {
+                res.setIsMoreComment(1);
+                comments.remove(3);
+            }
+            res.setComments(comments);
         }
         log.info("list: {}", list );
+
+
         return list;
     }
 

@@ -1,6 +1,7 @@
 package com.green.greengram.feed;
 
 import com.green.greengram.feed.model.*;
+import com.green.greengram.feedcomment.model.FeedCommentGetRes;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,4 +15,6 @@ public interface FeedMapper {
 
     List<String> getFeedPicsByFeedId(long feedId);
     int postFeedPics(FeedPicPostDto p);
+
+    List<FeedCommentGetRes> getFeedCommentTopBy4ByFeedId(long feedId);
 }

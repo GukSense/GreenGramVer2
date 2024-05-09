@@ -1,25 +1,22 @@
 package com.green.greengram.feed.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.green.greengram.common.GlobalConst;
+import com.green.greengram.common.model.Paging;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.BindParam;
 
 @Getter
 @Setter
 @ToString
-public class FeedGetReq {
-    private int page;
-    @JsonIgnore
-    private int startIdx;
-    @JsonIgnore
-    private int len;
+public class FeedGetReq extends Paging {
 
-    public void setPage(int page) {
-        this.page = (page <= 0) ?  1 :  page;
-        this.len = GlobalConst.FEED_PAGE_ITEM_LEN;
-        this.startIdx = (this.page - 1) * this.len;
+    private long signedUserId;
+
+    public FeedGetReq(Integer page, Integer size, long signedUserId) {
+        super(page, size == null ? GlobalConst.FEED_PAGING_SIZE : size);
+        this.signedUserId = signedUserId;
     }
+
 }
