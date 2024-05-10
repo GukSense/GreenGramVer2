@@ -10,7 +10,7 @@ public class FeedCommentDeleteReq {
     private long feedCommentId;
     private long signedUserId;
 
-//    @ConstructorProperties({"feed_comment_id", "signed_user_id"})
+    @ConstructorProperties({"feed_comment_id", "signed_user_id"})
     public FeedCommentDeleteReq(long feedCommentId, long signedUserId) {
         this.feedCommentId = feedCommentId;
         this.signedUserId = signedUserId;

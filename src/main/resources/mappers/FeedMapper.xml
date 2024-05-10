@@ -39,7 +39,7 @@
     </select>
 
     <select id="getFeedCommentTopBy4ByFeedId">
-        SELECT      A.comment, A.created_at AS createdAt, A.user_id AS writerId, B.nm AS writerNm, B.pic AS writerPic
+        SELECT      A.feed_comment_id AS feedCommentId, A.comment, A.created_at AS createdAt, A.user_id AS writerId, B.nm AS writerNm, B.pic AS writerPic
         FROM        feed_comment A
         INNER JOIN  user B
         ON          A.user_id = B.user_id
